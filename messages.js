@@ -3,7 +3,7 @@
  */
 message1 = {
     text: ["line1","line2","line3","line4"],
-    image: ["message1_image1", "message1_image2"],
+    image: ["message1_image1.jpeg", "message1_image2.jpeg"],
     template: "template1.html",
     days_to_show: ["monday", "wednesday"],
     time_to_show: ["06:00", "12:00"],
@@ -14,7 +14,7 @@ message1 = {
 
 message2 = {
     text: ["line1","line2","line3","line4","line5","line6","line7","line8","line9","line10"],
-    image: ["message2_image1"],
+    image: ["message2_image1.jpeg"],
     template: "template2.html",
     days_to_show: ["tuesday", "wednesday"],
     time_to_show: ["10:00", "16:00"],
@@ -41,7 +41,7 @@ message4 = {
 
 message5 = {
     text: ["line1","line2","line3","line4","line5","line6","line7"],
-    image: ["message5_image1", "message5_image2"],
+    image: ["message5_image1.jpeg", "message5_image2.jpg"],
     template: "template2.html",
     days_to_show: ["monday","tuesday", "wednesday"],
     time_to_show: ["01:00", "23:00"],

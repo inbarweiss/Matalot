@@ -7,20 +7,20 @@
     <script src="messages.js"></script>
     <script>
         function change_message(messages, i){
-            alert(messages[i]["template"]);
-            $("#main_iframe").attr("src", messages[i]["template"]);
-            $("#main_iframe").contents().find("#description > td, #images > td").remove();
+            $("#main_iframe").attr("src", messages[i]["template"]).one('load',function(){
+                $("#main_iframe").contents().find("#description > td, #images > td").remove();
 
-            for (var index in messages[i]["text"]){
-                //alert(index)
-                $("#main_iframe").contents().find("#description").append('<td>' + messages[i]["text"][index]+'<td>');
-            }
+                for (var index in messages[i]["text"]){
+                    //
+                    $("#main_iframe").contents().find("#description").append('<td>' + messages[i]["text"][index]+'<td>');
+                }
 
-            for (var index in messages[i]["text"]){
-                $("#main_iframe").contents().find("#images").append('<td><img src=' + messages[i]["image"][index]+'><td>');
-            }
+                for (var index in messages[i]["image"]){
+                    $("#main_iframe").contents().find("#images").append('<td><img src=' + messages[i]["image"][index]+'><td>');
+                }
+            });
 
-            //setTimeout(change_message(messages, ((i+1)%messages.length)), messages[i]["ttl"])
+            setTimeout(change_message, messages[i]["ttl"], messages, ((i+1)%messages.length))
         }
 
         $(document).ready(function(){
