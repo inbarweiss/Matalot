@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Big Screen</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="messages.js"></script>
+    <script>
+        function change_message(messages, i){
+            alert(messages[i]["template"]);
+            $("#main_iframe").attr("src", messages[i]["template"]);
+            $("#main_iframe").contents().find("#description > td, #images > td").remove();
+
+            for (var index in messages[i]["text"]){
+                //alert(index)
+                $("#main_iframe").contents().find("#description").append('<td>' + messages[i]["text"][index]+'<td>');
+            }
+
+            for (var index in messages[i]["text"]){
+                $("#main_iframe").contents().find("#images").append('<td><img src=' + messages[i]["image"][index]+'><td>');
+            }
+
+            //setTimeout(change_message(messages, ((i+1)%messages.length)), messages[i]["ttl"])
+        }
+
+        $(document).ready(function(){
+            change_message(messages, 0)
+        })
+    </script>
 </head>
 <body >
-
-<iframe src="template3.html" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-
-</iframe>
-
+<iframe id="main_iframe" src="template3.html" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
 </body>
 </html>
