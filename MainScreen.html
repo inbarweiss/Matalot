@@ -5,7 +5,7 @@
     <title>Big Screen</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
-      function change_message(message, currIndex) {
+      function change_message(message) {
           $("#main_iframe").attr("src", message["template"]).one('load', function () {
               $("#main_iframe").contents().find("#description > td, #images > td").remove();
 
@@ -17,15 +17,14 @@
                   $("#main_iframe").contents().find("#images").append('<td><img src=' + message["image"][index] + '><td>');
               }
           });
-          setTimeout(showNext, message["ttl"],currIndex + 1)
+          setTimeout(showNext, message["ttl"])
 
       };
 
 
-        function showNext(currIndex) {
-            $.get(window.location.href + "?message=" + currIndex, function(data, status){
-                console.log(currIndex);
-                change_message(data, currIndex);
+        function showNext() {
+            $.get(window.location.href, function(data, status){
+                change_message(data);
                 /*
                  $.each(data, function(key, value){
                  change_message(value);
