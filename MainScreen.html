@@ -4,82 +4,41 @@
     <meta charset="UTF-8">
     <title>Big Screen</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="messages.js"></script>
     <script>
-      function contains(array,needle) {
-            for(var item in array){
-                if(array[item]==needle)
-                    return true;
-            }
-            return false;
-        };
 
-      function isDateBetween(dateFrom, dateTo, dateCheck) {
-          var d1 = dateFrom.split(".");
-          var d2 = dateTo.split(".");
-          var c = dateCheck.split(".");
 
-          var from = new Date(d1[2], parseInt(d1[1])-1, d1[0]);  // -1 because months are from 0 to 11
-          var to   = new Date(d2[2], parseInt(d2[1])-1, d2[0]);
-          var check = new Date(c[2], parseInt(c[1])-1, c[0]);
-          return (check >= from && check <= to)
+
+      function change_message(message) {
+          $("#main_iframe").attr("src", message["template"]).one('load', function () {
+              $("#main_iframe").contents().find("#description > td, #images > td").remove();
+
+              for (var index in message["text"]) {
+                  $("#main_iframe").contents().find("#description").append('<td>' + message["text"][index] + '<td>');
+              }
+
+              for (var index in message["image"]) {
+                  $("#main_iframe").contents().find("#images").append('<td><img src=' + message["image"][index] + '><td>');
+              }
+          });
+
+          //setTimeout(change_message, messages[i]["ttl"], messages, ((i+1)%messages.length))
+          setTimeout(showNext, message["ttl"],message)
+
       };
-        function change_message(messages, i){
-            $("#main_iframe").attr("src", messages[i]["template"]).one('load',function(){
-                $("#main_iframe").contents().find("#description > td, #images > td").remove();
-
-                for (var index in messages[i]["text"]){
-                    $("#main_iframe").contents().find("#description").append('<td>' + messages[i]["text"][index]+'<td>');
-                }
-
-                for (var index in messages[i]["image"]){
-                    $("#main_iframe").contents().find("#images").append('<td><img src=' + messages[i]["image"][index]+'><td>');
-                }
-            });
-
-            //setTimeout(change_message, messages[i]["ttl"], messages, ((i+1)%messages.length))
-            setTimeout(showNext, messages[i]["ttl"],i)
-
-
-        };
 
 
         function showNext(currIndex) {
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth()+1; //January is 0!
-                var yyyy = today.getFullYear();
-                var fullDate = dd+"."+mm+"."+yyyy
-                var hour = today.getHours()+":"+"00";
-                var weekday = new Array(7);
-                weekday[0] =  "Sunday";
-                weekday[1] = "Monday";
-                weekday[2] = "Tuesday";
-                weekday[3] = "Wednesday";
-                weekday[4] = "Thursday";
-                weekday[5] = "Friday";
-                weekday[6] = "Saturday";
-                var day = weekday[today.getDay()];
+            $.get("message?currIndex=" + currIndex , function(data, status){
+                $.each(data, function(key, value){
+                    change_message(value);
+                   ;
+                });
+            });
 
-                for(var index in messages)
-                {
-                    if(contains(messages[index]["days_to_show"],day)&&
-                        isDateBetween(messages[index]["date_to_show"][0],messages[index]["date_to_show"][1],fullDate))
-                    {
-                        var fromHour = messages[index]["time_to_show"][0];
-                        var toHour =  messages[index]["time_to_show"][1];
-                        var fromDiff = ( new Date("1970-1-1 " + hour+":00") - new Date("1970-1-1 " + fromHour) ) / 1000 / 60 / 60;
-                        var toDIff = ( new Date("1970-1-1 " + toHour) - new Date("1970-1-1 " + hour+":00") ) / 1000 / 60 / 60;
-
-                        if((currIndex!=index)&&(fromDiff>=0&&toDIff>=0)){
-                                change_message(messages,index);
-                        }
-                    }
-                }
         }
 
         $(document).ready(function(){
-            showNext();
+            showNext(-1);
 
         })
     </script>

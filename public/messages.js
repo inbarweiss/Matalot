@@ -49,4 +49,3 @@ message5 = {
     ttl: 5000
 };
 
-messages = [message1, message2, message3, message4, message5];
