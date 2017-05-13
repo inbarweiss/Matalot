@@ -14,7 +14,7 @@
               }
 
               for (var index in message["image"]) {
-                  $("#main_iframe").contents().find("#images").append('<td><img src=' + message["image"][index] + '><td>');
+                  $("#main_iframe").contents().find("#images").append('<td><img src=' +"/resources/"+ message["image"][index] + '><td>');
               }
           });
           setTimeout(showNext, message["ttl"])

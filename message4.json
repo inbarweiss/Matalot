@@ -1,0 +1,14 @@
+{"message":
+[
+{
+"screen": 1, "config": {
+"text": ["line1", "line2"],
+"text": ["line1", "line2"],
+"template": "template1.html",
+"times_to_show": [{"day": "Monday", "time": ["17:00", "19:00"]}],
+"date_to_show": ["29.03.2017", "16.04.2017"],
+"ttl": 5000
+}
+}
+]
+}
