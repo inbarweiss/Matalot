@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
       function change_message(message) {
+        console.log(message)
           $("#main_iframe").attr("src", message["template"]).one('load', function () {
               $("#main_iframe").contents().find("#description > td, #images > td").remove();
 
@@ -17,38 +18,25 @@
                   $("#main_iframe").contents().find("#images").append('<td><img src=' +"/resources/"+ message["image"][index] + '><td>');
               }
           });
-          setTimeout(showNext, message["ttl"])
-
+          console.log(window.location.href);
+          var screen = window.location.href.toString().split('=')[1].toString();
+          setTimeout(showNext, message["screens"][screen]["ttl"]);
       };
 
 
         function showNext() {
-            $.get(window.location.href, function(data, status){
+            console.log(window.location.href);
+            $.get(window.location.href + "?init=true", function(data, status){
                 change_message(data);
-                /*
-                 $.each(data, function(key, value){
-                 change_message(value);
-                 ;
-                 });
-                 */
             });
-            /*
-            $.get("message?currIndex=" + currIndex, function(data, status){
-                console.log(currIndex);
-                change_message(data, currIndex);
-            });
-            */
-
         }
 
         $(document).ready(function(){
-            showNext(-1);
-
+            showNext();
         })
     </script>
 </head>
 <body >
 <iframe id="main_iframe" src="template3.html" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
-
 </body>
 </html>

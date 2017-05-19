@@ -1,89 +1,66 @@
-{"message":
-[
 {
-"screen": 1,
-"config": {
-"text": [
-"line1",
-"line2",
-"line3",
-"line4",
-"line5",
-"line6",
-"line7",
-"line8",
-"line9",
-"line10"
-],
-"image": [
-
-"message2_image1.jpeg"
-],
-"template": "template2.html",
-"times_to_show": [
-{
-"day": "Tuesday",
-"time": [
-"10:00",
-"16:00"
-]
-},
-{
-"day": "Wednesday",
-"time": [
-"10:00",
-"16:00"
-]
-}
-],
-"date_to_show": [
-"01.03.2017",
-"01.05.2017"
-],
-"ttl": 5000
-}
-},
-{
-"screen": 3,
-"config": {
-"text": [
-"line1",
-"line2",
-"line3",
-"line4",
-"line5",
-"line6",
-"line7",
-"line8",
-"line9",
-"line10"
-],
-"image": [
-"message2_image1.jpeg"
-],
-"template": "template2.html",
-"times_to_show": [
-{
-"day": "Tuesday",
-"time": [
-"10:00",
-"16:00"
-]
-},
-{
-"day": "Wednesday",
-"time": [
-"10:00",
-"16:00"
-]
-}
-],
-"date_to_show": [
-"01.03.2017",
-"01.05.2017"
-],
-"ttl": 5000
-}
-}
-]
+  "text": [
+    "line1",
+    "line2",
+    "line3",
+    "line4",
+    "line5",
+    "line6",
+    "line7",
+    "line8",
+    "line9",
+    "line10"
+  ],
+  "image": [
+    "message2_image1.jpeg"
+  ],
+  "template": "template2.html",
+  "screens": {
+    "1": {
+      "times_to_show": [
+        {
+          "day": "Tuesday",
+          "time": {
+            "from": "10:00",
+            "to": "16:00"
+          }
+        },
+        {
+          "day": "Wednesday",
+          "time": {
+            "from": "10:00",
+            "to": "16:00"
+          }
+        }
+      ],
+      "date_to_show": {
+        "from": "2017-03-01",
+        "to": "2017-05-01"
+      },
+      "ttl": 5000
+    },
+    "3": {
+      "times_to_show": [
+        {
+          "day": "Tuesday",
+          "time": {
+            "from": "10:00",
+            "to": "16:00"
+          }
+        },
+        {
+          "day": "Wednesday",
+          "time": {
+            "from": "10:00",
+            "to": "16:00"
+          }
+        }
+      ],
+      "date_to_show": {
+        "from": "2017-03-01",
+        "to": "2017-05-01"
+      },
+      "ttl": 5000
+    }
+  }
 }

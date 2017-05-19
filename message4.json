@@ -1,14 +1,29 @@
-{"message":
-[
 {
-"screen": 1, "config": {
-"text": ["line1", "line2"],
-"text": ["line1", "line2"],
-"template": "template1.html",
-"times_to_show": [{"day": "Monday", "time": ["17:00", "19:00"]}],
-"date_to_show": ["29.03.2017", "16.04.2017"],
-"ttl": 5000
-}
-}
-]
+  "text": [
+    "line1",
+    "line2"
+  ],
+  "text": [
+    "line1",
+    "line2"
+  ],
+  "template": "template1.html",
+  "screens": {
+    "1": {
+      "times_to_show": [
+        {
+          "day": "Monday",
+          "time": {
+            "from": "17:00",
+            "to": "19:00"
+          }
+        }
+      ],
+      "date_to_show": {
+        "from": "2017-03-29",
+        "to": "2017-04-16"
+      },
+      "ttl": 5000
+    }
+  }
 }
